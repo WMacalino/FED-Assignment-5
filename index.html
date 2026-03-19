@@ -3,12 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>|--TBD--|</title>
+    <title>Winnipeg Waste Collection Schedule</title>
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <button onclick="">|--TODO--|</button>
-    <table>Transit Info</table>
-    <script src="script.js"></script>
+    <header>
+        <h1>Winnipeg Collection Days</h1>
+    </header>
+    <main>
+        <section class="search-container">
+            <label for="addressInput">Enter your street or address:</label>
+            <input type="text" id="addressInput" place="e.g., 1733 Main Street">
+            <button id="searchBtn">Search</button>
+        </section>
+        
+        <table id="resultsTable">
+            <thead>
+                <tr>
+                    <th>Address</th>
+                    <th>Garbage Day</th>
+                    <th>Recycling Day</th>
+                    <th>Yard Waste</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">   
+            </tbody>
+        </table>
+        <script src="script.js"></script>
+    </main>
 </body>
 </html>
