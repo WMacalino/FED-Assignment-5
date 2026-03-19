@@ -4,18 +4,30 @@
  * March 18, 2026
  */
 
-async function getTransitInfo(date) {
-    try{
-        const response = await fetch(`https://api.winnipegtransit.com/v4/stops/10064/schedule.json?api-key=YmLmf_jqBiMjxLkALJm-`);
+async function getCollectionDays(searchQuery) {
+    try {
+        const apiUrl = `https://data.winnipeg.ca/resource/6rcy-9uik.json?` +
+                       `$where=lower(combined_address) LIKE lower('%${searchQuery}%')` +
+                       `&$order=combined_address ASC` +
+                       `&$limit=50`;
 
-        if(!response.ok) {
+        const encodedURL = encodeURI(apiUrl);
+
+        const response = await fetch(encodedURL);
+
+        if (!response.ok) {
             throw new Error(`HTTP Exception has occurred. Status: ${response.status}`);
         }
 
-        return await response.json();
-    } catch(error){
-        console.error("Failed to retrieve data.", error.message);
+        const data = await response.json();
+        
+        return data;
+
+    } catch (error) {
+        console.error("Failed to retrieve collection data:", error.message);
     }
 }
 
-getTransitInfo().then((data) => console.log(data));
+getCollectionDays('Main').then(data => {
+    console.log("Collection Schedule Results:", data);
+});
