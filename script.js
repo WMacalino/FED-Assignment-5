@@ -106,3 +106,11 @@ searchBtn.addEventListener('click', async () => {
         tableBody.appendChild(row);
     });
 });
+
+const clearButton = document.getElementById('clearBtn');
+
+clearButton.addEventListener('click', () => {
+    addressInput.value = ""
+    tableBody.innerHTML = ""
+    addressInput.focus()
+});
