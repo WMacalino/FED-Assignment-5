@@ -38,6 +38,7 @@ async function getCollectionDays(searchQuery) {
             throw new Error(`HTTP Exception has occurred. Status: ${response.status}`);
         }
 
+        debugger;
         const data = await response.json();
         
         return data;
@@ -74,8 +75,11 @@ searchBtn.addEventListener('click', async () => {
     // await delay(2000)        // Un-comment to see spinner animation!
     const rawData = await getCollectionDays(query);
 
+    console.log("Array data:" , rawData)
     // Clear the loading message
     tableBody.innerHTML = "";
+    
+    debugger;
 
     // Handle the case where the API finds nothing at all
     if (!rawData || rawData.length === 0) {
@@ -106,6 +110,7 @@ searchBtn.addEventListener('click', async () => {
         
         const row = document.createElement('tr');
 
+        debugger;
         // Highlights row if collection day is today!
         if (item.garbage_collection_day === todayString) {
             row.classList.add('highlight-today');
