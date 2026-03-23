@@ -8,29 +8,35 @@
 </head>
 <body>
     <header>
-        <h1>Winnipeg Collection Days</h1>
+        <h1>♻️ Winnipeg Collection Days</h1>
     </header>
+    
     <main>
         <section class="search-container">
             <label for="addressInput">Enter your street or address:</label>
-            <input type="text" id="addressInput" place="e.g., 1733 Main Street">
+            <input type="text" id="addressInput" placeholder="e.g., 1733 Main St">
             <button id="searchBtn">Search</button>
-            <button id="clearBtn">Clear Search</button>
-            <button id="saveBtn">Save Address</button>
+            <button id="clearBtn">🗑️ Clear</button>
+            <button id="saveBtn">⭐ Save</button>
+            
+            <p id="statusMessage"></p>
         </section>
-        <table id="resultsTable">
-            <thead>
-                <tr>
-                    <th>Address</th>
-                    <th>Garbage Day</th>
-                    <th>Recycling Day</th>
-                    <th>Yard Waste</th>
-                </tr>
-            </thead>
-            <tbody id="tableBody">   
-            </tbody>
-        </table>
-        <script src="script.js"></script>
+
+        <div class="table-wrapper">
+            <table id="resultsTable">
+                <thead>
+                    <tr>
+                        <th>Address</th>
+                        <th>Garbage Day</th>
+                        <th>Recycling Day</th>
+                        <th>Yard Waste</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+        </div>
     </main>
+    <script src="script.js"></script>
 </body>
 </html>

@@ -54,6 +54,7 @@ getCollectionDays('Main').then(data => {
 const searchBtn = document.getElementById('searchBtn');
 const addressInput = document.getElementById('addressInput');
 const tableBody = document.getElementById('tableBody');
+const statusMessage = document.getElementById('statusMessage');
 
 searchBtn.addEventListener('click', async () => {
 
@@ -62,9 +63,12 @@ searchBtn.addEventListener('click', async () => {
     const query = formatSearchQuery(rawInput);
     
     if (!query) {
-        alert("Please enter a street name or address.");
+        statusMessage.textContent = "Please enter a street name or address.";
+        statusMessage.style.color = "#ff6b6b";
         return;
     }
+
+    statusMessage.textContent = "";
 
     tableBody.innerHTML = "<tr><td colspan='4'><div class='spinner'></div></td></tr>";
     // await delay(2000)        // Un-comment to see spinner animation!
@@ -122,9 +126,10 @@ searchBtn.addEventListener('click', async () => {
 const clearButton = document.getElementById('clearBtn');
 
 clearButton.addEventListener('click', () => {
-    addressInput.value = ""
-    tableBody.innerHTML = ""
-    addressInput.focus()
+    addressInput.value = "";
+    tableBody.innerHTML = "";
+    statusMessage.textContent = "";
+    addressInput.focus();
 });
 
 // Saves address in input field
@@ -134,12 +139,14 @@ saveButton.addEventListener('click', () => {
     const query = addressInput.value.trim();
 
     if (!query) {
-        alert("Please enter an address to save first.");
-        return
+        statusMessage.textContent = "Please enter an address to save first.";
+        statusMessage.style.color = "#ff6b6b";
+        return;
     }
 
     localStorage.setItem('userAddress', formatSearchQuery(query));
-    alert("Address saved! We will remember this for next time.");
+    statusMessage.textContent = "Address saved! We will remember this for next time.";
+    statusMessage.style.color = "#85e09b";
 });
 
 // Loads saved address from local storage
@@ -152,4 +159,3 @@ window.addEventListener('DOMContentLoaded', () => {
         searchBtn.click();
     }
 });
-
