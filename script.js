@@ -110,10 +110,37 @@ searchBtn.addEventListener('click', async () => {
     });
 });
 
+// Clears the query table
 const clearButton = document.getElementById('clearBtn');
 
 clearButton.addEventListener('click', () => {
     addressInput.value = ""
     tableBody.innerHTML = ""
     addressInput.focus()
+});
+
+// Saves address in input field
+const saveButton = document.getElementById('saveBtn');
+
+saveButton.addEventListener('click', () => {
+    const query = addressInput.value.trim();
+
+    if (!query) {
+        alert("Please enter an address to save first.");
+        return
+    }
+
+    localStorage.setItem('userAddress', formatSearchQuery(query));
+    alert("Address saved! We will remember this for next time.");
+});
+
+// Loads saved address from local storage
+window.addEventListener('DOMContentLoaded', () => {
+    const savedAddress = localStorage.getItem('userAddress');
+
+    if (savedAddress){
+        addressInput.value = savedAddress
+
+        searchBtn.click();
+    }
 });
