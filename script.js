@@ -95,9 +95,17 @@ searchBtn.addEventListener('click', async () => {
         return;
     }
 
+    const daysOfWeek = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
+    const todayString = daysOfWeek[new Date().getDay()];
+    
     filteredData.forEach(item => {
         
         const row = document.createElement('tr');
+
+        // Highlights row if collection day is today!
+        if (item.garbage_collection_day === todayString) {
+            row.classList.add('highlight-today');
+        }
         
         row.innerHTML = `
             <td>${item.combined_address || 'N/A'}</td>
@@ -144,3 +152,4 @@ window.addEventListener('DOMContentLoaded', () => {
         searchBtn.click();
     }
 });
+
