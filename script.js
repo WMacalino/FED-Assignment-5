@@ -4,8 +4,8 @@
  * March 18, 2026
  */
 
-// For testing spinner animation by adding a delay
-const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+// For testing spinner animation by adding a delay on line 74.
+// const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 // Helper function to sanitize user input for the API
 function formatSearchQuery(input) {
@@ -38,7 +38,6 @@ async function getCollectionDays(searchQuery) {
             throw new Error(`HTTP Exception has occurred. Status: ${response.status}`);
         }
 
-        debugger;
         const data = await response.json();
         
         return data;
@@ -46,11 +45,7 @@ async function getCollectionDays(searchQuery) {
     } catch (error) {
         console.error("Failed to retrieve collection data:", error.message);
     }
-}
-
-getCollectionDays('Main').then(data => {
-    console.log("Collection Schedule Results:", data);
-});
+};
 
 const searchBtn = document.getElementById('searchBtn');
 const addressInput = document.getElementById('addressInput');
@@ -72,15 +67,12 @@ searchBtn.addEventListener('click', async () => {
     statusMessage.textContent = "";
 
     tableBody.innerHTML = "<tr><td colspan='4'><div class='spinner'></div></td></tr>";
-    // await delay(2000)        // Un-comment to see spinner animation!
+    // await delay(2000)        // Un-comment to see spinner animation longer!
     const rawData = await getCollectionDays(query);
 
-    console.log("Array data:" , rawData)
     // Clear the loading message
     tableBody.innerHTML = "";
     
-    debugger;
-
     // Handle the case where the API finds nothing at all
     if (!rawData || rawData.length === 0) {
         tableBody.innerHTML = "<tr><td colspan='4'>No addresses found matching that search.</td></tr>";
@@ -110,7 +102,6 @@ searchBtn.addEventListener('click', async () => {
         
         const row = document.createElement('tr');
 
-        debugger;
         // Highlights row if collection day is today!
         if (item.garbage_collection_day === todayString) {
             row.classList.add('highlight-today');
