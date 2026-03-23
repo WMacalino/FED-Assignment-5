@@ -4,6 +4,9 @@
  * March 18, 2026
  */
 
+// For testing spinner animation by adding a delay
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
 // Helper function to sanitize user input for the API
 function formatSearchQuery(input) {
     let formatted = input.toLowerCase();
@@ -63,8 +66,8 @@ searchBtn.addEventListener('click', async () => {
         return;
     }
 
-    tableBody.innerHTML = "<tr><td colspan='4'>Searching the database...</td></tr>";
-
+    tableBody.innerHTML = "<tr><td colspan='4'><div class='spinner'></div></td></tr>";
+    // await delay(2000)        // Un-comment to see spinner animation!
     const rawData = await getCollectionDays(query);
 
     // Clear the loading message
